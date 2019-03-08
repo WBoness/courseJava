@@ -30,6 +30,7 @@ public class Program {
 		}else
 			System.out.println("DIFERENTES!");
 		sc.close();
+		System.out.println("Modificação para o Git");
 	}
 
 }
