@@ -41,7 +41,7 @@ public class Program {
 			HorasContrato horasContrato = new HorasContrato(data, valorPorHora, horas);
 			fulano.adicionaContrato(horasContrato);
 		}
-		
+		System.out.println(fulano);
 		
 		sc.close();
 

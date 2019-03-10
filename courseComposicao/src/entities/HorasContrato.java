@@ -45,4 +45,10 @@ public class HorasContrato {
 		this.horas = horas;
 	}
 
+	@Override
+	public String toString() {
+		return "HorasContrato [data=" + data + ", valorPorHora=" + valorPorHora + ", horas=" + horas + "]";
+	}
+
+	
 }
