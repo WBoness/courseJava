@@ -1,0 +1,24 @@
+package application;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.TimeZone;
+
+/*
+ *  Laço for each
+ */
+
+public class Program {
+
+	public static void main(String[] args) throws ParseException {
+
+		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
+		Date agora = new Date();
+		
+		System.out.println(agora);
+		
+		
+		}
+}
