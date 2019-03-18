@@ -26,6 +26,7 @@ public class Program {
 		String stringData = sc.next();
 		Date data2 = sdf1.parse(stringData);
 		System.out.println(data2);
+		System.out.println(sdf1.format(data2));
 		sc.close();
 
 	}
