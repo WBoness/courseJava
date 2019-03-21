@@ -31,9 +31,21 @@ public class Reserva {
 	public Date getChackOut() {
 		return checkOut;
 	}
-	public void atualizarDatas(Date checkIn, Date chackOut) {
-		this.checkIn = checkIn;
-		this.checkOut = chackOut;
+	public String atualizarDatas(Date checkIn, Date chackOut) {
+		Date now = new Date();
+		if (checkIn.before(now)||(checkOut.before(now))) {
+			return "Só é possível fazer alterações para datas futuras!";
+		}
+		if (!checkOut.after(checkIn)) {
+			return"Data inválida! A data de check-out deve "
+					+ "ser posterior à de check-in!";
+		}
+		else {
+			this.checkIn = checkIn;
+			this.checkOut = chackOut;
+			return "Atualização feita com sucesso!";
+		}
+		
 	}
 	public Long duracao() {
 		/*Calendar in = Calendar.getInstance();

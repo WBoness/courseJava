@@ -47,26 +47,9 @@ public class Program {
 			Date novoCheckIn = sdf.parse(sc.next());
 			System.out.print("Check-out (dd/MM/yyyy): ");
 			Date novoCheckOut = sdf.parse(sc.next());
-			Date now = new Date();
-			if (novoCheckIn.before(now)||(novoCheckOut.before(now))) {
-				System.out.println("Só é possível fazer alterações "
-						+ "para datas futuras!");
-			}
-			else if (!novoCheckOut.after(novoCheckIn)) {
-				System.out.println("Data inválida! A data de check-out deve "
-						+ "ser posterior à de check-in!");
-			}
-			else {
-				System.out.println();
-				System.out.println("Atualização feita com sucesso!");
-				reserva.atualizarDatas(novoCheckIn, novoCheckOut);
-				System.out.println(reserva);
-			}
-			
-		}
-		
-		
-		
+			System.out.println(reserva.atualizarDatas(novoCheckIn, novoCheckOut));
+			System.out.println(reserva);			
+		}		
 		sc.close();
 	}
 }
