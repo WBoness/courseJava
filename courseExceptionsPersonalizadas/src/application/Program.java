@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
-import entities.Reserva;
+import model.entities.Reserva;
 
 /*
  *   Exceções personalizadas
@@ -30,6 +30,6 @@ public class Program {
 		System.out.println(reserva);
 		System.out.println("Entre com as novas datas de Entrada e Saída: ");
 		System.out.print("Entrada: ");
-		System.out.println("Saída: ");
+		System.out.print("Saída: ");
 	}
 }
