@@ -50,15 +50,14 @@ public class Reserva {
 	
 	@Override
 	public String toString () {
-		return "Reserva: Quarto "
+		return 	  "Reserva: Quarto "
 				+ this.numeroQuarto
 				+ ", check-in: "
 				+ sdf.format(checkIn)
-				+", check-out: "
+				+ ", check-out: "
 				+ sdf.format(checkOut)
 				+ ", "
 				+ duracao()
-				+" noites";
-		
+				+ " noites";
 	}
 }
