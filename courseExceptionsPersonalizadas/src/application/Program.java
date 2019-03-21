@@ -47,8 +47,14 @@ public class Program {
 			Date novoCheckIn = sdf.parse(sc.next());
 			System.out.print("Check-out (dd/MM/yyyy): ");
 			Date novoCheckOut = sdf.parse(sc.next());
-			System.out.println(reserva.atualizarDatas(novoCheckIn, novoCheckOut));
-			System.out.println(reserva);			
+			String erro = reserva.atualizarDatas(novoCheckIn, novoCheckOut);
+			if (erro != null) {
+				System.out.println("Erro na alteração da reserva: "+ erro);
+			}
+			else {
+				System.out.println(reserva);
+			}
+						
 		}		
 		sc.close();
 	}

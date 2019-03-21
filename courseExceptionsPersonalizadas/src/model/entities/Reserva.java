@@ -39,13 +39,11 @@ public class Reserva {
 		if (!checkOut.after(checkIn)) {
 			return"Data inválida! A data de check-out deve "
 					+ "ser posterior à de check-in!";
-		}
-		else {
-			this.checkIn = checkIn;
-			this.checkOut = chackOut;
-			return "Atualização feita com sucesso!";
-		}
-		
+		}		
+		this.checkIn = checkIn;
+		this.checkOut = chackOut;
+		return null;
+				
 	}
 	public Long duracao() {
 		/*Calendar in = Calendar.getInstance();
