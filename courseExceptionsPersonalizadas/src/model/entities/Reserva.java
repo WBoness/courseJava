@@ -31,18 +31,17 @@ public class Reserva {
 	public Date getChackOut() {
 		return checkOut;
 	}
-	public String atualizarDatas(Date checkIn, Date chackOut) {
+	public void atualizarDatas(Date checkIn, Date checkOut) {
 		Date now = new Date();
 		if (checkIn.before(now)||(checkOut.before(now))) {
-			return "Só é possível fazer alterações para datas futuras!";
+			throw new IllegalArgumentException("Só é possível fazer alterações para datas futuras!");
 		}
 		if (!checkOut.after(checkIn)) {
-			return"Data inválida! A data de check-out deve "
-					+ "ser posterior à de check-in!";
+			throw new IllegalArgumentException("Data inválida! A data de check-out deve "
+					+ "ser posterior à de check-in!");
 		}		
 		this.checkIn = checkIn;
-		this.checkOut = chackOut;
-		return null;
+		this.checkOut = checkOut;
 				
 	}
 	public Long duracao() {

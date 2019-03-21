@@ -25,37 +25,38 @@ import model.entities.Reserva;
 
 public class Program {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("Entre com as datas de Entrada e Saída: ");
-		System.out.print("Check-in (dd/MM/yyyy): ");
-		Date checkIn = sdf.parse(sc.next());
-		System.out.print("Check-out (dd/MM/yyyy): ");
-		Date checkOut = sdf.parse(sc.next());
-		if (!checkOut.after(checkIn)) {
-			System.out.println("Data inválida! A data de check-out deve "
-					+ "ser posterior à de check-in!");
-		}
-		else {
-			System.out.println("Reserva realizada com sucesso!");
+		try {
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			System.out.println("Entre com as datas de Entrada e Saída: ");
+			System.out.print("Check-in (dd/MM/yyyy): ");
+			Date checkIn = sdf.parse(sc.next());
+			System.out.print("Check-out (dd/MM/yyyy): ");
+			Date checkOut = sdf.parse(sc.next());		
 			Reserva reserva = new Reserva(1001,checkIn ,checkOut);
 			System.out.println(reserva);
+			
 			System.out.println();
 			System.out.println("Entre com as novas datas de Entrada e Saída: ");
 			System.out.print("Check-in (dd/MM/yyyy): ");
-			Date novoCheckIn = sdf.parse(sc.next());
+			checkIn = sdf.parse(sc.next());
 			System.out.print("Check-out (dd/MM/yyyy): ");
-			Date novoCheckOut = sdf.parse(sc.next());
-			String erro = reserva.atualizarDatas(novoCheckIn, novoCheckOut);
-			if (erro != null) {
-				System.out.println("Erro na alteração da reserva: "+ erro);
-			}
-			else {
-				System.out.println(reserva);
-			}
-						
-		}		
-		sc.close();
+			checkOut = sdf.parse(sc.next());
+			
+			reserva.atualizarDatas(checkIn, checkOut);
+			System.out.println(reserva);	
+			
+		}
+		catch (ParseException e) {
+			System.out.println("Formato de data(dd/MM/yyyy) inválido! ");			
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("Erro na reserva: "+ e.getMessage());			
+		}
+		finally {
+			sc.close();
+		}
 	}
 }
