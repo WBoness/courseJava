@@ -14,7 +14,8 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.Date;
+import java.util.Scanner;
 
 import model.entities.Reserva;
 
@@ -25,11 +26,47 @@ import model.entities.Reserva;
 public class Program {
 
 	public static void main(String[] args) throws ParseException {
+		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Reserva reserva = new Reserva(1001, sdf.parse("21/03/2019"),sdf.parse("23/03/2019"));
-		System.out.println(reserva);
-		System.out.println("Entre com as novas datas de Entrada e Saída: ");
-		System.out.print("Entrada: ");
-		System.out.print("Saída: ");
+		System.out.println("Entre com as datas de Entrada e Saída: ");
+		System.out.print("Check-in (dd/MM/yyyy): ");
+		Date checkIn = sdf.parse(sc.next());
+		System.out.print("Check-out (dd/MM/yyyy): ");
+		Date checkOut = sdf.parse(sc.next());
+		if (!checkOut.after(checkIn)) {
+			System.out.println("Data inválida! A data de check-out deve "
+					+ "ser posterior à de check-in!");
+		}
+		else {
+			System.out.println("Reserva realizada com sucesso!");
+			Reserva reserva = new Reserva(1001,checkIn ,checkOut);
+			System.out.println(reserva);
+			System.out.println();
+			System.out.println("Entre com as novas datas de Entrada e Saída: ");
+			System.out.print("Check-in (dd/MM/yyyy): ");
+			Date novoCheckIn = sdf.parse(sc.next());
+			System.out.print("Check-out (dd/MM/yyyy): ");
+			Date novoCheckOut = sdf.parse(sc.next());
+			Date now = new Date();
+			if (novoCheckIn.before(now)||(novoCheckOut.before(now))) {
+				System.out.println("Só é possível fazer alterações "
+						+ "para datas futuras!");
+			}
+			else if (!novoCheckOut.after(novoCheckIn)) {
+				System.out.println("Data inválida! A data de check-out deve "
+						+ "ser posterior à de check-in!");
+			}
+			else {
+				System.out.println();
+				System.out.println("Atualização feita com sucesso!");
+				reserva.atualizarDatas(novoCheckIn, novoCheckOut);
+				System.out.println(reserva);
+			}
+			
+		}
+		
+		
+		
+		sc.close();
 	}
 }
