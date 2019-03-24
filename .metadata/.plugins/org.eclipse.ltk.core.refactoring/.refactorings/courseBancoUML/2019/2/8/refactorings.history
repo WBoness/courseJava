@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;courseBancoUML/model.di&apos; to &apos;courseBancoUMLmodel.di&apos;" description="Rename resource &apos;model.di&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="model.di" name="courseBancoUMLmodel.di" stamp="1550609040512" updateReferences="true"/>
+</session>
