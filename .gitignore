@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/.metadata/
+=======
 # Compiled class file
 *.class
 
@@ -23,3 +26,4 @@
 hs_err_pid*
 /.metadata/
 /.recommenders/
+>>>>>>> 367e5beaac91aca99c7c76502bdfd160b87645f2

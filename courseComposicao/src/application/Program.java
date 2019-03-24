@@ -42,6 +42,12 @@ public class Program {
 			fulano.adicionaContrato(horasContrato);
 		}
 		System.out.println(fulano);
+		System.out.println("entre com o ano e o mes a ser pesquisado: ");
+		System.out.print("ano: ");
+		int ano= sc.nextInt();
+		System.out.print("Mes: ");
+		int mes = sc.nextInt();
+		System.out.println("A renda de "+fulano.getNome()+" no mes "+mes+" do ano de "+ ano+ " foi R$ "+ fulano.renda(ano, mes));
 		
 		sc.close();
 
