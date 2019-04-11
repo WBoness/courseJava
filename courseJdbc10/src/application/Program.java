@@ -35,18 +35,14 @@ public class Program {
 			st = conn.createStatement();
 			
 			int rows1 = st.executeUpdate("UPDATE seller SET BaseSalary = 2900 WHERE departmentId = 1");
-			int i=1;
-			if (i<2) {
-				throw new SQLException("Erro proposital");	// cria um erro e atualizou apenas o Depto 1		
-			}
-					
-			int rows2 = st.executeUpdate("UPDADE seller SET BaseSalary = 3000 WHERE departmentId = 2");
+							
+			int rows2 = st.executeUpdate("UPDATE seller SET BaseSalary = 3900 WHERE departmentId = 2");
 			
 			conn.commit(); //confirma as alterações, caso tenham dado TUDO certo!
 			System.out.println("Linhas afetadas no Departamento "+ rows1+": "+rows1);
 			System.out.println("Linhas afetadas no Departamento "+ rows2+": "+rows2);
 		}		
-		catch (SQLException e) { // trata as exceções de fora personalizada
+		catch (SQLException e) { // trata as exceções de forma personalizada
 			try {
 				conn.rollback();
 				throw new DbException("Rollback realizado! Causado por:" + e.getMessage());
