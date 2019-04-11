@@ -12,7 +12,7 @@ public class Program {
 
 	public static void main(String[] args) {
 
-/*
+
 		Department depto = new Department(1,"Books");// testando classe Departamento
 		System.out.println(depto);
 		
@@ -28,7 +28,7 @@ public class Program {
 		Seller vendor2 = sellerDao.findById(3);
 		System.out.println(vendor2);
 		
-*/		SellerDao sellerDao = DaoFactory.createSellerDao();
+
 		// Teste da implementação do FindByDepartment
 		System.out.println("\n===== SELLER FindByDepartment ====-");
 		Department dep = new Department(1, null);
@@ -37,6 +37,13 @@ public class Program {
 		for (Seller obj: lista) {
 			System.out.println(obj);
 		}
+		
+		// Teste da implementação do FindALL
+				System.out.println("\n===== SELLER FindAll ====-");
+				List<Seller> lista2 = sellerDao.findAll();		//imprimir lista forEach
+				for (Seller obj: lista2) {
+					System.out.println(obj);
+				}
 		
 		
 	}
