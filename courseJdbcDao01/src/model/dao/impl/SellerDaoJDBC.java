@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -112,6 +115,59 @@ public class SellerDaoJDBC implements SellerDao {
 	public List<Seller> findAll() {
 		
 		return null;
+	}
+
+	@Override
+	public List<Seller> findByDepartment(Department depto) {
+		PreparedStatement st=null;
+		ResultSet rs = null;
+		try {
+			st=conn.prepareStatement("SELECT seller.*,department.Name as DepName "+
+					"FROM seller INNER JOIN department " +
+					"ON seller.DepartmentId = department.Id "+
+					"WHERE DepartmentId = ? "+
+					"ORDER BY Name");
+			st.setInt(1, depto.getId());
+			rs= st.executeQuery();
+		/*
+		 * O resultado disso é um resultset (tabela);
+		 * Deseja-se em formato de objetos associados (vendor-Seller e Book -depto)
+		 * O resultset aponta para a posição 0 (sem objeto)
+		 * 		testa se há registro
+		 * 		se houver, navega-se para INSTANCIAR os elementos
+		 */
+		
+			List<Seller> lista = new ArrayList<>();// lista de vendedores
+			Map<Integer, Department> map = new HashMap<>();//guarda a lista de departamentos
+														//SEM REPETIÇÃO, para fazer o relacionamento
+														//correto (vendedor *---1 Departamento)
+			
+			
+			//testando se há registro (mas pode ser mais de um troc o if por while)
+			while (rs.next()) {
+				//testa se já existe o departamento (dep) na lista (map)
+				Department dep = map.get(rs.getInt("DepartmentId"));//se o depto já existir, reaproveita e coloca em dep
+				
+				if (dep==null) {
+					dep = instantiateDepartment(rs);//chama método auxiliar
+					map.put(rs.getInt("DepartmentId"), dep); //salva dep no map
+				}
+				Seller vendor = instantiateSeller(rs, dep);// usa o dep novo ou existente
+				lista. add(vendor);
+			}
+		return lista; 
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());			
+		}
+		finally{
+			//fechar os recursos
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+			// não fecha a conexão. Fecha na aplicação depois para poder 
+			// aproveitar o mesmo DAO
+		} 
+		
 	}
 
 }

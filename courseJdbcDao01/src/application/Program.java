@@ -1,6 +1,7 @@
 package application;
 
 import java.util.Date;
+import java.util.List;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -11,7 +12,7 @@ public class Program {
 
 	public static void main(String[] args) {
 
-
+/*
 		Department depto = new Department(1,"Books");// testando classe Departamento
 		System.out.println(depto);
 		
@@ -23,9 +24,20 @@ public class Program {
 		
 		// teste da implementação do FindById(Integer id)
 		// Aproveita a instanciação do SellerDao
-		System.out.println("===== SELLER FindById ====-");
+		System.out.println("\n===== SELLER FindById ====-");
 		Seller vendor2 = sellerDao.findById(3);
 		System.out.println(vendor2);
+		
+*/		SellerDao sellerDao = DaoFactory.createSellerDao();
+		// Teste da implementação do FindByDepartment
+		System.out.println("\n===== SELLER FindByDepartment ====-");
+		Department dep = new Department(1, null);
+		
+		List<Seller> lista = sellerDao.findByDepartment(dep);		//imprimir lista forEach
+		for (Seller obj: lista) {
+			System.out.println(obj);
+		}
+		
 		
 	}
 

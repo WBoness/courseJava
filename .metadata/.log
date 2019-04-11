@@ -11590,3 +11590,24 @@ java.net.UnknownHostException: vaadin.com
 
 !ENTRY com.vaadin.designer2 1 0 2019-04-11 17:14:56.153
 !MESSAGE Removed all models from server.
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 18:24:32.596
+!MESSAGE Schedule fetching new notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 18:24:32.598
+!MESSAGE Fetching all notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 18:24:34.676
+!MESSAGE HTTP Response code :200
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 18:24:34.678
+!MESSAGE Parse notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 18:24:34.683
+!MESSAGE Save JSON notifications content to cache file C:\Desenvolvimento\Java\Workspace\courseJava\.metadata\.plugins\com.vaadin.integration.eclipse\notifications-cache.json
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-04-11 18:32:19.641
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-04-11 18:54:02.947
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
