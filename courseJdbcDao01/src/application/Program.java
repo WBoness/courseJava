@@ -44,7 +44,14 @@ public class Program {
 				for (Seller obj: lista2) {
 					System.out.println(obj);
 				}
+				
+				
+		// Teste da implementação do FindALL
+		System.out.println("\n===== SELLER INSERT ====-");
 		
+		Seller vendorNovo = new Seller(null, "Sarah Boness", "sboness@gmail.com", new Date(), 3000.0, dep);
+		sellerDao.insert(vendorNovo);
+		System.out.println("Novo vendedor possui Id= "+ vendorNovo.getId());
 		
 	}
 

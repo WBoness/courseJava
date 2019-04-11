@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,41 @@ public class SellerDaoJDBC implements SellerDao {
 	
 	@Override
 	public void insert(Seller vendor) {
-				
+
+		PreparedStatement st=null;
+		try {
+			st=conn.prepareStatement("INSERT INTO Seller "
+					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
+					+ "VALUES "
+					+ "(?, ?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			st.setString(1, vendor.getName());
+			st.setString(2, vendor.getEmail());
+			st.setDate(3, new java.sql.Date(vendor.getBirthDate().getTime()));
+			st.setDouble(4, vendor.getBaseSalary());
+			st.setInt(5, vendor.getDepartment().getId());
+			int rowsAffectedrs= st.executeUpdate();
+			
+			if (rowsAffectedrs>0) {
+				ResultSet rs= st.getGeneratedKeys();
+				if (rs.next()) {
+					int id = rs.getInt(1);
+					vendor.setId(id);// insere o id no objeto
+				}
+				DB.closeResultSet(rs);//O escopo é só aqui!
+			}else {
+				throw new DbException("Erro inesperado! nenhuma inserção foi verificada.");
+			} 
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());			
+		}
+		finally{
+			//fechar os recursos
+			DB.closeStatement(st);
+			// não fecha a conexão. Fecha na aplicação depois para poder 
+			// aproveitar o mesmo DAO
+		}		
 	}
 
 	@Override
