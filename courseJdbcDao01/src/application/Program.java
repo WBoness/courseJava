@@ -20,6 +20,12 @@ public class Program {
 
 		//Instanciar um SellerDao (interface) sem expor a implementação (SellerDaoJDBC) através da fábrica
 		SellerDao sellerDao = DaoFactory.createSellerDao();
+		
+		// teste da implementação do FindById(Integer id)
+		// Aproveita a instanciação do SellerDao
+		Seller vendor2 = sellerDao.findById(3);
+		System.out.println(vendor2);
+		
 	}
 
 }
