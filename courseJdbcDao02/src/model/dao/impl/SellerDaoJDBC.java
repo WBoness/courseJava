@@ -67,8 +67,16 @@ public class SellerDaoJDBC implements SellerDao {
 		
 		//testando se há registro
 			if (rs.next()) {
-				Department depto = instantiateDepartment(rs);//chama método auxiliar
-				Seller vendor = instantiateSeller(rs, depto);
+				Department depto = new Department();
+				depto.setId(rs.getInt("DepartmentId"));
+				depto.setNome(rs.getString("DepName"));
+				Seller vendor = new Seller();
+				vendor.setId(rs.getInt("Id"));
+				vendor.setName(rs.getString("Name"));
+				vendor.setEmail(rs.getString("Email"));
+				vendor.setBaseSalary(rs.getDouble("BaseSalary"));
+				vendor.setBirthDate(rs.getDate("BirthDate"));
+				vendor.setDepartment(depto);//não é o ID, mas o objeto Departamento
 				return vendor;
 			}
 		return null; //se não entrar no if ->(não existir o objeto)
@@ -85,28 +93,6 @@ public class SellerDaoJDBC implements SellerDao {
 		} 
 		
 	}
-	
-	// método auxiliar para instanciação do objeto seller (exceção é tratada no principal
-	private Seller instantiateSeller(ResultSet rs, Department depto) throws SQLException {
-		Seller vendor = new Seller();
-		vendor.setId(rs.getInt("Id"));
-		vendor.setName(rs.getString("Name"));
-		vendor.setEmail(rs.getString("Email"));
-		vendor.setBaseSalary(rs.getDouble("BaseSalary"));
-		vendor.setBirthDate(rs.getDate("BirthDate"));
-		vendor.setDepartment(depto);//não é o ID, mas o objeto Departamento
-		return vendor;
-	}
-
-	// método auxiliar para instanciação do objeto depto (exceção é tratada no principal)
-	private Department instantiateDepartment(ResultSet rs) throws SQLException {
-		Department depto= new Department();
-		depto.setId(rs.getInt("DepartmentId"));
-		depto.setNome(rs.getString("DepName"));
-		return depto;
-	}
-	
-	
 
 	@Override
 	public List<Seller> findAll() {

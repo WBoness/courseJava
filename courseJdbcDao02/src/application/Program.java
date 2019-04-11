@@ -23,7 +23,6 @@ public class Program {
 		
 		// teste da implementação do FindById(Integer id)
 		// Aproveita a instanciação do SellerDao
-		System.out.println("===== SELLER FindById ====-");
 		Seller vendor2 = sellerDao.findById(3);
 		System.out.println(vendor2);
 		
