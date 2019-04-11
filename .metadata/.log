@@ -11512,3 +11512,9 @@ java.net.UnknownHostException: vaadin.com
 
 !ENTRY com.vaadin.designer2 1 0 2019-04-11 14:29:42.163
 !MESSAGE Removed all models from server.
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 14:32:53.562
+!MESSAGE Jetty stopped at http://null:0
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 14:32:53.563
+!MESSAGE Removed all models from server.
