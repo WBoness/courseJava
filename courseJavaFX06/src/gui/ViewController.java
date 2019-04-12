@@ -34,7 +34,8 @@ public class ViewController {
 		catch (NumberFormatException e) {
 			Alerts.showAlert("Erro!", null, "CONTEÚDO INVÁLIDO! \n" 
 					+ "Operação só pode ser realizada entre números reais!\n"
-					+ "O separador de decimais é o '.'!", AlertType.ERROR);
+					+ "O separador de decimais é o '.'!"
+					+ e.getMessage(), AlertType.ERROR);
 		}
 	}
 }
