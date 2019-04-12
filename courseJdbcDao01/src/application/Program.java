@@ -69,7 +69,16 @@ public class Program {
 		vendor.setBaseSalary(5000.0);
 		sellerDao.update(vendor);//grava no disco
 		System.out.println(vendor);
-				
+		
+		/*
+		// Teste da implementação do DELETE
+		System.out.println("\n===== SELLER DELETE ====-");
+		//vendor=sellerDao.findById(11);
+		sellerDao.deleteById(vendor.getId());
+		System.out.println("Feito! Deletado o Vendedor de Id "+ vendor.getId());
+		*/
+		
+		
 	}
 
 }
