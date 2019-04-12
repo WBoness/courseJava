@@ -45,14 +45,31 @@ public class Program {
 					System.out.println(obj);
 				}
 				
-				
-		// Teste da implementação do FindALL
+		/*		
+		// Teste da implementação do INSERT
 		System.out.println("\n===== SELLER INSERT ====-");
 		
 		Seller vendorNovo = new Seller(null, "Sarah Boness", "sboness@gmail.com", new Date(), 3000.0, dep);
 		sellerDao.insert(vendorNovo);
 		System.out.println("Novo vendedor possui Id= "+ vendorNovo.getId());
+		System.out.println(sellerDao.findById(vendorNovo.getId()));
+		*/
 		
+		// Teste da implementação do UPDATE
+		System.out.println("\n===== SELLER UPDATE ====-");
+		vendor = sellerDao.findById(10);// localiza
+		vendor.setName("Sarah Aires");
+		vendor.setEmail("saires@gmail.com");//altera o objeto
+		sellerDao.update(vendor);//grava no disco
+		System.out.println(vendor);
+		
+		vendor = sellerDao.findById(11);// localiza no disco
+		vendor.setName("Sarah A Boness");
+		vendor.setEmail("sab@gmail.com");//altera o objeto DAO
+		vendor.setBaseSalary(5000.0);
+		sellerDao.update(vendor);//grava no disco
+		System.out.println(vendor);
+				
 	}
 
 }
