@@ -111,6 +111,19 @@ public class Program {
 		for (Department dp :listaDepto) {
 			System.out.println(dp);
 		}
+		
+		System.out.println("\n===== DEPARTMENT DeleteById ====-");
+		listaDepto = deptoDao.findAll();
+		for (Department dp :listaDepto) {
+			System.out.println(dp);
+		}
+		deptoDao.deleteById(8); //deleta pelo Id
+		System.out.println();
+		listaDepto = deptoDao.findAll();
+		for (Department dp :listaDepto) {
+			System.out.println(dp);
+		}
+		
 	}
 
 }
