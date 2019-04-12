@@ -11623,3 +11623,24 @@ java.net.UnknownHostException: vaadin.com
 
 !ENTRY org.eclipse.jdt.debug 2 0 2019-04-11 20:13:07.727
 !MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-04-11 22:23:29.188
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-04-11 22:24:08.928
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 22:24:32.648
+!MESSAGE Schedule fetching new notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 22:24:32.649
+!MESSAGE Fetching all notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 22:24:34.211
+!MESSAGE HTTP Response code :200
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 22:24:34.213
+!MESSAGE Parse notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-11 22:24:34.219
+!MESSAGE Save JSON notifications content to cache file C:\Desenvolvimento\Java\Workspace\courseJava\.metadata\.plugins\com.vaadin.integration.eclipse\notifications-cache.json

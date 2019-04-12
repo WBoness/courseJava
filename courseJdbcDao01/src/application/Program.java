@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -62,7 +63,7 @@ public class Program {
 		vendor.setEmail("saires@gmail.com");//altera o objeto
 		sellerDao.update(vendor);//grava no disco
 		System.out.println(vendor);
-		
+		/*
 		vendor = sellerDao.findById(11);// localiza no disco
 		vendor.setName("Sarah A Boness");
 		vendor.setEmail("sab@gmail.com");//altera o objeto DAO
@@ -70,7 +71,7 @@ public class Program {
 		sellerDao.update(vendor);//grava no disco
 		System.out.println(vendor);
 		
-		/*
+		
 		// Teste da implementação do DELETE
 		System.out.println("\n===== SELLER DELETE ====-");
 		//vendor=sellerDao.findById(11);
@@ -78,6 +79,22 @@ public class Program {
 		System.out.println("Feito! Deletado o Vendedor de Id "+ vendor.getId());
 		*/
 		
+		System.out.println("\n\n=============== IMPLEMENTAÇÃO DepartmentDaoJDBC ===============");
+		//Teste da implementação do DELETE
+		System.out.println("\n===== DEPARTMENT FindById ====-");
+		
+		DepartmentDao deptoDao = DaoFactory.createDepartmentDao();
+		depto = deptoDao.findById(1);
+		System.out.println(depto);
+		
+		System.out.println("\n===== DEPARTMENT FindAll ====-");
+		
+		List <Department> listaDepto = deptoDao.findAll();
+		for (Department dp :listaDepto) {
+			System.out.println(dp);
+		}
+		
+		System.out.println("\n===== DEPARTMENT FindAll ====-");
 		
 	}
 
