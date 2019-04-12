@@ -15,6 +15,6 @@ public class ViewController {
 		Alerts.showAlert("Informação de Confirmação", "Parabéns!!!!!!", 
 				"Você acabou de clicar no primeiro botão JavaFX"
 				, AlertType.INFORMATION);
-		System.out.println("Click!");
+		System.out.println("Click!");// cabeçalho pode ser null
 	}
 }
