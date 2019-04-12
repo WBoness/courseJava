@@ -93,9 +93,24 @@ public class Program {
 		for (Department dp :listaDepto) {
 			System.out.println(dp);
 		}
-		
-		System.out.println("\n===== DEPARTMENT FindAll ====-");
-		
+		/*
+		System.out.println("\n===== DEPARTMENT INSERT ====-");
+		Department deptoNovo = new Department(null,"Food");
+		deptoDao.insert(deptoNovo);
+		listaDepto=deptoDao.findAll();
+		for (Department dp :listaDepto) {
+			System.out.println(dp);
+		}
+		*/
+
+		System.out.println("\n===== DEPARTMENT UPDATE ====-");
+		dep = deptoDao.findById(7);
+		dep.setNome("Nautica");
+		deptoDao.update(dep);
+		listaDepto = deptoDao.findAll();
+		for (Department dp :listaDepto) {
+			System.out.println(dp);
+		}
 	}
 
 }
