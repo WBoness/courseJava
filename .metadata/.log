@@ -5457,3 +5457,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.jdt.launching 4 124 2019-04-12 20:19:00.555
 !MESSAGE Launch configuration Css2Bin references closed project courseJavaFX02
+
+!ENTRY org.eclipse.jdt.launching 4 124 2019-04-12 20:33:19.667
+!MESSAGE Launch configuration Css2Bin references closed project courseJavaFX02
