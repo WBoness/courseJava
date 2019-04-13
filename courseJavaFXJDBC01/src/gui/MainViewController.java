@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sun.org.apache.xml.internal.security.keys.storage.implementations.SingleCertificateResolver;
-
 import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
@@ -35,7 +33,7 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	public void onMenuItemDepartamentoAction() {
-		System.out.println("Ação do Item de menu Departamento");
+		loadView("/gui/DepartamentoView.fxml");
 	}
 	
 	@FXML
