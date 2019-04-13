@@ -47,8 +47,10 @@ public class ViewController implements Initializable {
 	// por exemplo as constraints
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Constraints.setTextFieldDouble(txtNumber01);
+		Constraints.setTextFieldDouble(txtNumber01); //só aceita numeros; rejeita letras
 		Constraints.setTextFieldDouble(txtNumber02);
+		Constraints.setTextFieldMaxLength(txtNumber01, 5);// limita em 5 digitos
+		Constraints.setTextFieldMaxLength(txtNumber02, 7);
 		
 	}
 }
