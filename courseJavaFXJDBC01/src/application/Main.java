@@ -9,6 +9,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	
+	private static Scene mainScene;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		//Agora está instanciando ao inves de invocar o método estático
@@ -20,8 +23,12 @@ public class Main extends Application {
 			scrollPane.setFitToHeight(true);//ajusta o scrollpane à altura
 			scrollPane.setFitToWidth(true);//ajusta à largura
 			
+			/* Alteração após cria variável estática mainScene
 			Scene mainScene = new Scene(scrollPane); //cria a cena principal (passando objeto principal
 												 // da view - AnchorPane vazio
+   		  */
+			mainScene = new Scene(scrollPane);
+			
 			primaryStage.setScene(mainScene);// palco da sena, seta o palco
 			primaryStage.setTitle("Exemplo de Aplicação JavaFX");// coloca título
 			primaryStage.show();
@@ -32,5 +39,9 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static Scene getMainScene() {
+		return mainScene;
 	}
 }

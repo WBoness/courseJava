@@ -5726,3 +5726,18 @@ java.net.SocketException: Network is unreachable: connect
 
 !ENTRY org.eclipse.jface.text 2 0 2019-04-13 10:22:30.598
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 14:12:56.517
+!MESSAGE Schedule fetching new notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 14:12:56.518
+!MESSAGE Fetching all notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 14:12:58.625
+!MESSAGE HTTP Response code :200
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 14:12:58.626
+!MESSAGE Parse notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 14:12:58.631
+!MESSAGE Save JSON notifications content to cache file C:\Desenvolvimento\Java\Workspace\courseJava\.metadata\.plugins\com.vaadin.integration.eclipse\notifications-cache.json
