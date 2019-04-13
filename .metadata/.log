@@ -7393,3 +7393,12 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.jface.text 2 0 2019-04-12 22:00:06.154
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2019-04-12 22:18:30.254
+!MESSAGE No repository found at file:/C:/Desenvolvimento/Java/eclipse-modeling-2018-12/eclipse/.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2019-04-12 22:18:32.158
+!MESSAGE No repository found at file:/C:/Desenvolvimento/Java/eclipse-modeling-2018-12/.
+
+!ENTRY org.eclipse.jdt.launching 4 124 2019-04-12 22:28:10.750
+!MESSAGE Launch configuration Css2Bin references closed project courseJavaFX02
