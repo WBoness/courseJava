@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 
 public class MainViewController implements Initializable {
 
+	
 	@FXML
 	private MenuItem menuItemVendedor;
 	@FXML
