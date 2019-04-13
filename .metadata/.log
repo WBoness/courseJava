@@ -5741,3 +5741,40 @@ java.net.SocketException: Network is unreachable: connect
 
 !ENTRY com.vaadin.designer2 1 0 2019-04-13 14:12:58.631
 !MESSAGE Save JSON notifications content to cache file C:\Desenvolvimento\Java\Workspace\courseJava\.metadata\.plugins\com.vaadin.integration.eclipse\notifications-cache.json
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 19:00:18.594
+!MESSAGE Schedule fetching new notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 19:00:18.598
+!MESSAGE Fetching all notifications
+
+!ENTRY com.vaadin.integration.eclipse 4 0 2019-04-13 19:00:32.850
+!MESSAGE Exception while data querying operation
+!STACK 0
+java.net.UnknownHostException: vaadin.com
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(Unknown Source)
+	at java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:112)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:381)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:111)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at com.vaadin.integration.eclipse.notifications.model.NotificationsService.doGet(NotificationsService.java:412)
+	at com.vaadin.integration.eclipse.notifications.model.NotificationsService.getNotifications(NotificationsService.java:397)
+	at com.vaadin.integration.eclipse.notifications.model.NotificationsService.getAllNotifications(NotificationsService.java:142)
+	at com.vaadin.integration.eclipse.notifications.jobs.FetchNotificationsJob.run(FetchNotificationsJob.java:64)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-13 19:00:33.202
+!MESSAGE Parse notifications
