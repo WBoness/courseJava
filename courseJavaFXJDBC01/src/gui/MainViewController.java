@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.org.apache.xml.internal.security.keys.storage.implementations.SingleCertificateResolver;
+
 import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
@@ -45,7 +47,8 @@ public class MainViewController implements Initializable {
 
 	}
 	
-	private void loadView (String absoluteName) {//carrega uma view
+	//private void loadView (String absoluteName) {//carrega uma view
+	private synchronized void loadView (String absoluteName) { //garante que não seja interrompido no multithread
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVBox = loader.load();
