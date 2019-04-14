@@ -74,8 +74,8 @@ public class DepartmentFormContoller implements Initializable {
 
 	}
 	@FXML
-	public void onBtCancelAction() {
-		System.out.println("Botão Cancel pressionado");
+	public void onBtCancelAction(ActionEvent event) {
+		Utils.currentSatage(event).close();
 	}
 	
 	private Department getFormData() {
