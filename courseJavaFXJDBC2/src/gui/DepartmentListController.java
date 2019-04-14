@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.listeners.DataChangeListner;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
 import model.entities.Department;
 import model.services.DepartmentService;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable,DataChangeListner {
 
 	private DepartmentService servico;// cria dependência da classe
 	// mas não cria a classe para não gerar forte acoplamento ->> cria método
@@ -102,6 +103,7 @@ public class DepartmentListController implements Initializable {
 			DepartmentFormContoller controller = loader.getController();
 			controller.setDepartment(obj);// injetar no controlador
 			controller.setDepartmentService(new DepartmentService());//injeção pelo botão salvar??
+			controller.subscribleDataChangeListener(this);//inscreve o próprio objeto para escutar o listner
 			controller.updateFormData(); // carrega os dados no formulário
 
 			// Situação:carregar uma janela de diálogo modal na frente de uma existente
@@ -118,5 +120,14 @@ public class DepartmentListController implements Initializable {
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Erro carregando View", e.getMessage(), AlertType.ERROR);
 		}
+	}
+
+	@Override
+	public void onDataChanged() {
+		// escuta o listener para atualizar a lista - tableView
+		// tem que se inscrever ---> injeção de dependência
+		updateTableView();
+		
+		
 	}
 }

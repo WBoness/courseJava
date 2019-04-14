@@ -7,9 +7,12 @@ package gui;
  * 		- mensagem de erro no label oculto
  */
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import db.DbException;
+import gui.listeners.DataChangeListner;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -28,6 +31,8 @@ public class DepartmentFormContoller implements Initializable {
 	private Department entity; //criar dependência de Departamento (tem que implementar o método set)
 							  // com isso o controlador terá uma instância do Department
 	private DepartmentService service; //cria dependência com DepartmentService e cria método set
+	
+	private List<DataChangeListner> dataChangeListners = new ArrayList<>();//permite qoe outros objetos possam se inscrever - criar método sbscribe
 	
 	@FXML
 	private TextField txtId;
@@ -50,6 +55,11 @@ public class DepartmentFormContoller implements Initializable {
 	public void setDepartmentService (DepartmentService service) {
 		this.service = service;
 	}
+	
+	//Subscrever listners
+	public void subscribleDataChangeListener (DataChangeListner listner) {
+		dataChangeListners.add(listner);
+	}
 			
 	//eventos para tratar os botões
 	@FXML
@@ -63,6 +73,9 @@ public class DepartmentFormContoller implements Initializable {
 		try {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
+			//informar listner para atualizar lista automaticamente
+			notifyDataChangeListeners();
+			
 			// para fechar a janela
 			Utils.currentSatage(event).close(); // pega a referência para a janela atual (formulário) --> precisa do evento (acrescenta ActionEvent como parâmetro)
 													   // Chama a operação close para fechar a janela 
@@ -73,6 +86,12 @@ public class DepartmentFormContoller implements Initializable {
 		}
 
 	}
+	private void notifyDataChangeListeners() { //executar onDataChangeners
+		for (DataChangeListner listners : dataChangeListners) {
+			listners.onDataChanged();
+		}
+	}
+
 	@FXML
 	public void onBtCancelAction(ActionEvent event) {
 		Utils.currentSatage(event).close();
