@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import application.Main;
 import gui.util.Alerts;
@@ -32,13 +33,16 @@ public class MainViewController implements Initializable {
 	}
 
 	@FXML
-	public void onMenuItemDepartamentoAction() {
-		loadView2("/gui/DepartamentoView.fxml");
-		}
+	public void onMenuItemDepartamentoAction() {//expressão funcional para acessar controlador genérico
+		loadView("/gui/DepartamentoView.fxml", (DepartamentoViewController controller) ->{
+			controller.setDepartamentoService(new DepartamentoService());
+			controller.updateTableView();		
+		});
+	}
 
 	@FXML
 	public void onMenuItemAboutAction() {
-		loadView("/gui/AboutView.fxml");
+		loadView("/gui/AboutView.fxml", x -> {});
 	}
 
 	@Override
@@ -47,7 +51,7 @@ public class MainViewController implements Initializable {
 	}
 
 	// private void loadView (String absoluteName) {//carrega uma view
-	private synchronized void loadView(String absoluteName) { // garante que não seja interrompido no multithread
+	private synchronized <T> void loadView(String absoluteName, Consumer <T> initializatingAction) { // garante que não seja interrompido no multithread
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVBox = loader.load();
@@ -79,27 +83,13 @@ public class MainViewController implements Initializable {
 			mainVBox.getChildren().clear(); // Exclui os filhos do mainVBox
 			mainVBox.getChildren().add(mainMenu); // incluir o menubar +
 			mainVBox.getChildren().addAll(newVBox.getChildren()); // filhos do VBox da janela About
-						
-		} catch (IOException e) {
-			Alerts.showAlert("Erro carregando a página", null, e.getMessage(), AlertType.ERROR);
-		}
-	}
-
-	private synchronized void loadView2(String absoluteName) { // garante que não seja interrompido no multithread
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			VBox newVBox = loader.load();
-			Scene mainScene = Main.getMainScene();// armazena a cena
-			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-
-			Node mainMenu = mainVBox.getChildren().get(0);// preserva o menuBar
-			mainVBox.getChildren().clear(); // Exclui os filhos do mainVBox
-			mainVBox.getChildren().add(mainMenu); // incluir o menubar +
-			mainVBox.getChildren().addAll(newVBox.getChildren()); // filhos do VBox da janela About
 			
-			DepartamentoViewController controller = loader.getController();//referencia para controller da view
-			controller.setDepartamentoService(new DepartamentoService());
-			controller.updateTableView();			
+			// Como ativar a função lambda
+			T controller = loader.getController();//getController retorna T (controlador genérico chamado acima)
+			initializatingAction.accept(controller); //inicializa a variável
+			
+			
+			
 		} catch (IOException e) {
 			Alerts.showAlert("Erro carregando a página", null, e.getMessage(), AlertType.ERROR);
 		}
