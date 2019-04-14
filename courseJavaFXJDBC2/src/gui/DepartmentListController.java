@@ -1,6 +1,5 @@
 package gui;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -29,90 +28,94 @@ import model.services.DepartmentService;
 
 public class DepartmentListController implements Initializable {
 
-	private DepartmentService servico;//cria dependência da classe 
+	private DepartmentService servico;// cria dependência da classe
 	// mas não cria a classe para não gerar forte acoplamento ->> cria método
-	//setDepartamentoService
-	
-	
+	// setDepartamentoService
+
 	@FXML
 	private TableView<Department> tableViewDepartamento;
-	
+
 	@FXML
 	private TableColumn<Department, Integer> tableColumIdDepartamento;
-	
+
 	@FXML
 	private TableColumn<Department, String> tableColumNomeDepartamento;
-	
+
 	@FXML
 	private Button btNewDepartamento;
-	
+
 	private ObservableList<Department> obsList;// tem que carregar os deptos aqui (criar metodo updateTableView)
-	
-	//método de tratamento de evento Botão
-	public void onBtNewDepartamentoAction(ActionEvent event) { //parametro para acessar o evento
+
+	// método de tratamento de evento Botão
+	public void onBtNewDepartamentoAction(ActionEvent event) { // parametro para acessar o evento
 		Stage parentStage = Utils.currentSatage(event);
-		Department obj = new Department(); //para inicializa o formulário vazio --> tem que ser injetado no controlador do formulário (criou novo parâmetro))
-		createDialogForm(obj,"/gui/DepartmentForm.fxml", parentStage);
-		
+		Department obj = new Department(); // para inicializa o formulário vazio --> tem que ser injetado no controlador
+											// do formulário (criou novo parâmetro))
+		createDialogForm(obj, "/gui/DepartmentForm.fxml", parentStage);
+
 	}
 
-	//injeção de dependência da classe serviço: depois carrega a lista de depto
+	// injeção de dependência da classe serviço: depois carrega a lista de depto
 	// para exibir na lista --> criar observableList
 	public void setDepartamentoService(DepartmentService servico) {
-		this.servico=servico;
+		this.servico = servico;
 	}
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		inicializaNodes(); //inicia algum componente na tela
+		inicializaNodes(); // inicia algum componente na tela
 	}
 
-	//vai iniciar o comportamento das colunas 
+	// vai iniciar o comportamento das colunas
 	private void inicializaNodes() {
 		tableColumIdDepartamento.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumNomeDepartamento.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		
-		//configurar altura e largura do tableView
-		Stage stage = (Stage) Main.getMainScene().getWindow(); //window é superclasse do stage (faz downcasting)
+
+		// configurar altura e largura do tableView
+		Stage stage = (Stage) Main.getMainScene().getWindow(); // window é superclasse do stage (faz downcasting)
 		tableViewDepartamento.prefHeightProperty().bind(stage.heightProperty());
-		
+
 	}
-	
+
 	public void updateTableView() {
-		if (servico==null) {//garante a injeção de dependencia
+		if (servico == null) {// garante a injeção de dependencia
 			throw new IllegalStateException("Lista Serviço está vazia");
-		}else {
+		} else {
 			List<Department> lista = servico.findAll();
-			obsList = FXCollections.observableArrayList(lista);//pega os dados originais da lista
+			obsList = FXCollections.observableArrayList(lista);// pega os dados originais da lista
 			tableViewDepartamento.setItems(obsList);// carrega e exibe os dados
 		}
-		}
-	private void createDialogForm (Department obj, String absoluteName, Stage parentStage) {//quando cria uma janela de diálogo, tem que informar o stage que a criou
-													  // tem que informar também o nome da view a ser carregada
+	}
+
+
+	private void createDialogForm(Department obj, String absoluteName, Stage parentStage) {// quando cria uma janela de
+																							// diálogo, tem que informar
+																							// o stage que a criou
+		// tem que informar também o nome da view a ser carregada
 		try {
-			//lógica para abrir a janela de formulário
+			// lógica para abrir a janela de formulário
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
-			
-			//pegar uma referência para o controlador da tela que acabou de carregar
+
+			// pegar uma referência para o controlador da tela que acabou de carregar
 			DepartmentFormContoller controller = loader.getController();
-			controller.setDepartment(obj);//injetar no controlador
-			controller.updateFormData(); //carrega os dados no formulário
-			
-			//Situação:carregar uma janela de diálogo modal na frente de uma existente
-			//		   - é necessário criar um novo stage (um na frente do outro)
+			controller.setDepartment(obj);// injetar no controlador
+			controller.setDepartmentService(new DepartmentService());//injeção pelo botão salvar??
+			controller.updateFormData(); // carrega os dados no formulário
+
+			// Situação:carregar uma janela de diálogo modal na frente de uma existente
+			// - é necessário criar um novo stage (um na frente do outro)
 			Stage dialogStage = new Stage();
 			// configurar o stage
 			dialogStage.setTitle("Entre com os dados do Departamento");
-			dialogStage.setScene(new Scene (pane));//elemento raiz é o pane
+			dialogStage.setScene(new Scene(pane));// elemento raiz é o pane
 			dialogStage.setResizable(false);// janela não poderá ser redimensionada
-			dialogStage.initOwner(parentStage);//pai da janela
+			dialogStage.initOwner(parentStage);// pai da janela
 			dialogStage.initModality(Modality.WINDOW_MODAL);// se não fechar a janela não acessa a anterior
 			dialogStage.showAndWait();
-			
-		}
-		catch(IOException e) {
+
+		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Erro carregando View", e.getMessage(), AlertType.ERROR);
 		}
 	}

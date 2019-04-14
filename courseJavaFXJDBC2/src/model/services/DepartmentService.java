@@ -26,4 +26,16 @@ public class DepartmentService {
 	}
 	
 	
+	public void saveOrUpdate(Department obj) {
+	
+		// Tem que verificar se vai inserir ou atualizar no banco
+		// testa se o id do obl é nulo (inserir)
+		
+		if (obj.getId() == null) {
+			dao.insert(obj);
+		}
+		else {
+			dao.update(obj);
+		}
+	}
 }

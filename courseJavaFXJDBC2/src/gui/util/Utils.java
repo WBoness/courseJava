@@ -13,4 +13,16 @@ public class Utils {
 		return (Stage)((Node)event.getSource()).getScene().getWindow();
 		
 	}
+	
+	public static Integer tryParseToInt(String str) {
+		//tem que validar se o conteúdo inteiro é valido: 
+		//retornar null (ao invés de lançar uma exceção - NumberFormatException)
+		
+		try {
+			return Integer.parseInt(str);
+		}
+		catch(NumberFormatException e) {
+			return null;
+		}
+	}
 }
