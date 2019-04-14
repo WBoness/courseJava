@@ -51,7 +51,9 @@ public class DepartmentListController implements Initializable {
 	//método de tratamento de evento Botão
 	public void onBtNewDepartamentoAction(ActionEvent event) { //parametro para acessar o evento
 		Stage parentStage = Utils.currentSatage(event);
-		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
+		Department obj = new Department(); //para inicializa o formulário vazio --> tem que ser injetado no controlador do formulário (criou novo parâmetro))
+		createDialogForm(obj,"/gui/DepartmentForm.fxml", parentStage);
+		
 	}
 
 	//injeção de dependência da classe serviço: depois carrega a lista de depto
@@ -86,12 +88,17 @@ public class DepartmentListController implements Initializable {
 			tableViewDepartamento.setItems(obsList);// carrega e exibe os dados
 		}
 		}
-	private void createDialogForm (String absoluteName, Stage parentStage) {//quando cria uma janela de diálogo, tem que informar o stage que a criou
+	private void createDialogForm (Department obj, String absoluteName, Stage parentStage) {//quando cria uma janela de diálogo, tem que informar o stage que a criou
 													  // tem que informar também o nome da view a ser carregada
 		try {
 			//lógica para abrir a janela de formulário
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			//pegar uma referência para o controlador da tela que acabou de carregar
+			DepartmentFormContoller controller = loader.getController();
+			controller.setDepartment(obj);//injetar no controlador
+			controller.updateFormData(); //carrega os dados no formulário
 			
 			//Situação:carregar uma janela de diálogo modal na frente de uma existente
 			//		   - é necessário criar um novo stage (um na frente do outro)
