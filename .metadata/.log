@@ -6246,3 +6246,18 @@ java.io.FileNotFoundException: C:\Desenvolvimento\Java\Workspace\courseJava\.met
 
 !ENTRY com.vaadin.designer2 1 0 2019-04-13 23:56:25.006
 !MESSAGE Removed all models from server.
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-14 11:20:03.561
+!MESSAGE Schedule fetching new notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-14 11:20:03.583
+!MESSAGE Fetching all notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-14 11:20:09.565
+!MESSAGE HTTP Response code :200
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-14 11:20:16.069
+!MESSAGE Parse notifications
+
+!ENTRY com.vaadin.designer2 1 0 2019-04-14 11:20:16.505
+!MESSAGE Save JSON notifications content to cache file C:\Desenvolvimento\Java\Workspace\courseJava\.metadata\.plugins\com.vaadin.integration.eclipse\notifications-cache.json

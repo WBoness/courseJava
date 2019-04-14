@@ -1,18 +1,28 @@
 package gui;
 
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.util.Alerts;
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Department;
 import model.services.DepartmentService;
@@ -39,8 +49,9 @@ public class DepartmentListController implements Initializable {
 	private ObservableList<Department> obsList;// tem que carregar os deptos aqui (criar metodo updateTableView)
 	
 	//método de tratamento de evento Botão
-	public void onBtNewDepartamentoAction() {
-		System.out.println("Criar Novo Departamento!");
+	public void onBtNewDepartamentoAction(ActionEvent event) { //parametro para acessar o evento
+		Stage parentStage = Utils.currentSatage(event);
+		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
 	}
 
 	//injeção de dependência da classe serviço: depois carrega a lista de depto
@@ -75,5 +86,27 @@ public class DepartmentListController implements Initializable {
 			tableViewDepartamento.setItems(obsList);// carrega e exibe os dados
 		}
 		}
-
+	private void createDialogForm (String absoluteName, Stage parentStage) {//quando cria uma janela de diálogo, tem que informar o stage que a criou
+													  // tem que informar também o nome da view a ser carregada
+		try {
+			//lógica para abrir a janela de formulário
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+			
+			//Situação:carregar uma janela de diálogo modal na frente de uma existente
+			//		   - é necessário criar um novo stage (um na frente do outro)
+			Stage dialogStage = new Stage();
+			// configurar o stage
+			dialogStage.setTitle("Entre com os dados do Departamento");
+			dialogStage.setScene(new Scene (pane));//elemento raiz é o pane
+			dialogStage.setResizable(false);// janela não poderá ser redimensionada
+			dialogStage.initOwner(parentStage);//pai da janela
+			dialogStage.initModality(Modality.WINDOW_MODAL);// se não fechar a janela não acessa a anterior
+			dialogStage.showAndWait();
+			
+		}
+		catch(IOException e) {
+			Alerts.showAlert("IO Exception", "Erro carregando View", e.getMessage(), AlertType.ERROR);
+		}
+	}
 }
