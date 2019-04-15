@@ -9,7 +9,7 @@ public class Utils {
 	//para acessar (obter) o stage onde o controller que recebeu o evento (envent) está
 	//ex. se clicar em um botão, pega o stage daquele botão
 	
-	public static Stage currentSatage(ActionEvent event) {
+	public static Stage currentStage(ActionEvent event) {
 		return (Stage)((Node)event.getSource()).getScene().getWindow();
 		
 	}
@@ -19,10 +19,12 @@ public class Utils {
 		//retornar null (ao invés de lançar uma exceção - NumberFormatException)
 		
 		try {
-			return Integer.parseInt(str);
+			Integer i = Integer.parseInt(str);
+			return i;
 		}
 		catch(NumberFormatException e) {
 			return null;
 		}
 	}
+
 }

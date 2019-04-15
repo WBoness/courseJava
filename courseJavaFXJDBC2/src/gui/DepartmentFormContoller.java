@@ -39,6 +39,7 @@ public class DepartmentFormContoller implements Initializable {
 	
 	@FXML
 	private TextField txtId;
+	
 	@FXML
 	private TextField txtName;
 	
@@ -80,7 +81,7 @@ public class DepartmentFormContoller implements Initializable {
 			notifyDataChangeListeners();
 			
 			// para fechar a janela
-			Utils.currentSatage(event).close(); // pega a referência para a janela atual (formulário) --> precisa do evento (acrescenta ActionEvent como parâmetro)
+			Utils.currentStage(event).close(); // pega a referência para a janela atual (formulário) --> precisa do evento (acrescenta ActionEvent como parâmetro)
 													   // Chama a operação close para fechar a janela 
 			
 		}
@@ -100,15 +101,15 @@ public class DepartmentFormContoller implements Initializable {
 
 	@FXML
 	public void onBtCancelAction(ActionEvent event) {
-		Utils.currentSatage(event).close();
+		Utils.currentStage(event).close();
 	}
 	
 	private Department getFormData() {
 		Department obj = new Department();
 		ValidationException exception = new ValidationException("Erro de Validação!");
 		//não precisa de validação
-		obj.setId(Utils.tryParseToInt(txtId.getId()));
-		
+		obj.setId(Utils.tryParseToInt(txtId.getText()));
+
 		// Validação: não pode ser vazio
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 			exception.addError("name", "Campo não pode ser vazio!");
